@@ -1,23 +1,38 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
+  const [counter, setCounter] = useState(0); 
+  const [showProduct, setShowProduct] = useState(false);
+ 
+  const increaseCounter = () => {
+    setCounter(counter + 1); 
+  };
+
+ const ShowProductDetails=()=> {
+  setShowProduct(!showProduct);
+ }
+
+ const productDetails = showProduct ? (
+  <div>
+    <h2>Product Details</h2>
+    <p><strong>Name:</strong> iPhone 14</p>
+    <p><strong>Price:</strong> $1200</p>
+    <p><strong>Description:</strong> A premium smartphone with advanced features.</p>
+  </div>
+) : null;
+ 
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app-container">
+      <h1 className="counter">Counter: {counter}</h1>
+      <button className="button" onClick={increaseCounter}>
+        Increase
+      </button>
+      <button className="button" onClick={ShowProductDetails}>
+        Show Product
+      </button>
+      {productDetails}
     </div>
   );
 }
